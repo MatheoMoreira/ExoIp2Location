@@ -1,15 +1,12 @@
 <?php
 
-define("MYSQL_HOST", "");
-define("MYSQL_DATABASE", "");
-define("MYSQL_USER", "");
-define("MYSQL_PASSWORD", "");
+include('../assets/conn_db.php');
 
 define("SQL_INSERT", "INSERT INTO geoip(ip_from, ip_to, country_code, country_name, region_name, city_name, latitude, longitude) VALUES (%d, %d, '%s', '%s', '%s', '%s', %f, %f) ");
 
-$sPDOConnectString = sprintf( "mysql:host=%s;dbname=%s;charset=utf8", MYSQL_HOST, MYSQL_DATABASE );
+$sPDOConnectString = sprintf( "mysql:host=%s;dbname=%s;charset=utf8", $servername, $dbname );
 
-$dbh = new PDO( $sPDOConnectString, MYSQL_USER, MYSQL_PASSWORD );
+$dbh = new PDO( $sPDOConnectString, $username, $password );
 $dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
 
