@@ -1,0 +1,19 @@
+FROM php:8.3-cli
+
+#RUN apt update && apt install vim
+
+# Installation des extensions PHP nécessaires (optionnel, selon les besoins de vos scripts)
+RUN docker-php-ext-install pdo_mysql
+
+# Création d'un utilisateur non privilégié
+RUN groupadd -r geoipgroup && useradd -G geoipgroup geoip
+
+# Définition du répertoire de travail
+RUN mkdir /script
+WORKDIR /script
+
+# Commande par défaut (pour garder le conteneur actif)
+CMD ["tail", "-f", "/dev/null"]
+
+# Basculer vers l'utilisateur non privilégié
+USER geoip

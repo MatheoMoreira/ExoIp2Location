@@ -1,0 +1,8 @@
+{
+    "driver": "mysql",
+    "host": "localhost",
+    "dbname": "geoip",
+    "charset": "utf8",
+    "username": "user2",
+    "password": "G301p!ip"
+}

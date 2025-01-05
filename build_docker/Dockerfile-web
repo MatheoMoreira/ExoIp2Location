@@ -1,0 +1,14 @@
+FROM php:8.3-apache
+
+RUN apt-get update && \
+    docker-php-ext-install pdo pdo_mysql
+
+COPY apache_conf_available/*.conf /etc/apache2/conf-available/
+RUN a2enconf servername
+
+COPY apache_sites_available/site-geoip.conf /etc/apache2/sites-available/
+RUN a2ensite site-geoip.conf
+
+# Use the default development configuration
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+COPY php_conf/php-file_upload.ini $PHP_INI_DIR/conf.d/

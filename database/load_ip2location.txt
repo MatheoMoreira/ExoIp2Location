@@ -1,0 +1,19 @@
+```
+$ ./shell_in geoip_db
+
+bash-5.1# cd /root/database
+
+$ mysql --local-infile -u root -p
+
+mysql> use geoip;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> source load_ip2location.sql;
+Query OK, 251782 rows affected (3.05 sec)
+Records: 251782  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> select * from ip2location limit 25;
+
+```
